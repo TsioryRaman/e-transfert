@@ -3,7 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { typeOrmConfig } from './config/typeormconfig';
+import { entities } from './entity/entity';
+import { CategoryModule } from './category/category.module';
+import { ArticleModule } from './article/article.module';
 console.log("Username :",process.env.DB_USER)
 @Module({
   imports: [
@@ -14,10 +16,12 @@ console.log("Username :",process.env.DB_USER)
       port: parseInt(process.env.DATABASE_PORT,10),
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DATABASE_NAME,
-      entities: [],
+      database: process.env.DB_NAME,
+      entities,
       synchronize: true
-    })
+    }),
+    CategoryModule,
+    ArticleModule
   ],
   controllers: [AppController],
   providers: [AppService],
