@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { entities } from './entity/entity';
 import { CategoryModule } from './category/category.module';
 import { ArticleModule } from './article/article.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 console.log("Username :",process.env.DB_USER)
 @Module({
   imports: [
@@ -21,7 +23,9 @@ console.log("Username :",process.env.DB_USER)
       synchronize: true
     }),
     CategoryModule,
-    ArticleModule
+    ArticleModule,
+    AuthModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
