@@ -1,7 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "../category/category.entity";
+import { DateInfo } from "../DateInfo.entity";
 
 @Entity("article")
-export class Article {
+export class Article extends DateInfo{
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -19,4 +21,8 @@ export class Article {
         default: false
     })
     isPublished:boolean;
+
+    @ManyToOne(()=>Category,(category)=>category.article)
+    @JoinColumn()
+    category:Category;
 }

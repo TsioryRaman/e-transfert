@@ -1,7 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Article } from "../article/article.entity";
+import { DateInfo } from "../DateInfo.entity";
 
 @Entity("category")
-export class Category {
+export class Category extends DateInfo{
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -9,10 +11,9 @@ export class Category {
         length:255
     })
     name: string;
+    
+    @OneToMany(()=>Article,(article)=>article.category)
+    article:Article;
 
-    @CreateDateColumn()
-    createdDate: Date;
 
-    @UpdateDateColumn()
-    updateDate: Date;
 }
