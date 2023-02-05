@@ -53,7 +53,7 @@ export class UserService {
     }
 
     async findUser(id:number){
-      const {password,...user} =await this.userRepository.findOneBy({id});
+      const {password,...user} = await this.userRepository.findOneBy({id});
       return user;
     }
 

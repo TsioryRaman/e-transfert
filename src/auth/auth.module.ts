@@ -6,6 +6,7 @@ import { EncodePassword } from 'src/user/utils/bcrypt-encode';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { LocalStrategy } from './local.strategy';
+import { AuthController } from './auth.controller';
 
 require('dotenv').config()
 
@@ -19,6 +20,7 @@ require('dotenv').config()
     }),
   ],
   providers: [AuthService,LocalStrategy,JwtStrategy,EncodePassword],
-  exports:[AuthService]
+  exports:[AuthService],
+  controllers: [AuthController]
 })
 export class AuthModule {}
