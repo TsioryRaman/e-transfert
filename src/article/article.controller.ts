@@ -26,7 +26,7 @@ export class ArticleController {
       }
     }
   
-    @Get(':id')
+    @Get(':id(\\d+)')
     async findOne(@Param('id') id: string) {
       try{
         const article = await this.articleService.findOne(+id);
@@ -39,7 +39,7 @@ export class ArticleController {
       }
     }
   
-    @Patch(':id')
+    @Patch(':id(\\d+)')
     update(@Param('id') id: string, @Body() updateArticleDto: UpdateArticleDto) {
       try{
         console.log(updateArticleDto);
@@ -49,7 +49,7 @@ export class ArticleController {
       }
     }
   
-    @Delete(':id')
+    @Delete(':id(\\d+)')
     async remove(@Param('id') id: string) {
       try{
         const article = await this.articleService.remove(+id);

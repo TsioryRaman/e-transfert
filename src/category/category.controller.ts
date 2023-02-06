@@ -25,7 +25,7 @@ export class CategoryController {
     }
   }
 
-  @Get(':id')
+  @Get(':id(\\d+)')
   async findOne(@Param('id') id: string) {
     try{
       const category = await this.categoryService.findOne(+id);
@@ -38,7 +38,7 @@ export class CategoryController {
     }
   }
 
-  @Patch(':id')
+  @Patch(':id(\\d+)')
   update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
     try{
       return this.categoryService.update(+id, updateCategoryDto);
@@ -47,7 +47,7 @@ export class CategoryController {
     }
   }
 
-  @Delete(':id')
+  @Delete(':id(\\d+)')
   async remove(@Param('id') id: string) {
     try{
       const category = await this.categoryService.remove(+id);
