@@ -10,6 +10,7 @@ import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { configuration } from './config/configurations';
+import { WebsocketModule } from './websocket/websocket.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -30,7 +31,8 @@ import { configuration } from './config/configurations';
     CategoryModule,
     ArticleModule,
     AuthModule,
-    UserModule
+    UserModule,
+    WebsocketModule
   ],
   controllers: [AppController],
   providers: [AppService],
