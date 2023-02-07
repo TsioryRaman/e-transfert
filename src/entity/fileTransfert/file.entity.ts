@@ -8,7 +8,14 @@ export class File extends DateInfo {
 
     @Column()
     filename: string;
-
+    @Column()
+    size: number;
+    @Column()
+    originalName: string;
+    @Column()
+    destination: string;
+    @Column()
+    filetype: string;
     @ManyToOne(() => Filetransfert, (file) => file.id)
     file: Filetransfert
 }

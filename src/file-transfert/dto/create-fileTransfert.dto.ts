@@ -4,5 +4,5 @@ import { CreateFileDto } from "./file.dto";
 export class CreateFileTransfertDto {
     sendBy: CreateUserDto;
     sendFrom: CreateUserDto;
-    file: CreateFileDto
+    file: CreateFileDto[];
 }

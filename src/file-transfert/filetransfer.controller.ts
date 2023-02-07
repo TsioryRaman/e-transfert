@@ -1,4 +1,4 @@
-import { Controller, Param, ParseIntPipe, Post, Req, Request, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, Body, ParseIntPipe, Post, Req, Request, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { FileTransfertService } from './service/file-transfert.service';
@@ -7,17 +7,17 @@ import { FileTransfertService } from './service/file-transfert.service';
 export class FiletransferController {
     constructor(private fileTransfertService: FileTransfertService) {
     }
-    @UseGuards(JwtAuthGuard)
-    @Post(':receiverId')
 
     @UseInterceptors(FileInterceptor('file'))
-
+    // @UseGuards(JwtAuthGuard)
+    @Post()
     SendFile(
-        @Param('receiverId', ParseIntPipe) receiverId,
+        @Body() body,
         @Request() req,
-        // @UploadedFile() file: Express.Multer.File
+        @UploadedFile() file: Express.Multer.File
     ) {
-        return this.fileTransfertService.SendFile(+req.user.id, receiverId)
+        console.log(body)
+        return this.fileTransfertService.SendFile(1, body.idReceiver, file)
 
     }
 

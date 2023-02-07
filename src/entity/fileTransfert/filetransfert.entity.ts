@@ -9,8 +9,8 @@ export class Filetransfert extends DateInfo {
     @PrimaryGeneratedColumn()
     id: number;
 
-    // @Column()
-    // filename: string;
+    @Column()
+    filename: string;
 
     @OneToOne(() => User, (sendBy) => sendBy.id)
     @JoinColumn()
@@ -22,5 +22,5 @@ export class Filetransfert extends DateInfo {
     sendTo: User;
 
     @OneToMany(() => File, (files) => files.id)
-    files: File;
+    files: File[];
 }
