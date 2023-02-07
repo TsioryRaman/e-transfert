@@ -9,6 +9,7 @@ import { CategoryModule } from './category/category.module';
 import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { FileTransfertModule } from './file-transfert/file-transfert.module';
 @Module({
   imports: [
     ConfigModule.forRoot({}),
@@ -25,7 +26,8 @@ import { UserModule } from './user/user.module';
     CategoryModule,
     ArticleModule,
     AuthModule,
-    UserModule
+    UserModule,
+    FileTransfertModule
   ],
   controllers: [AppController],
   providers: [AppService],
