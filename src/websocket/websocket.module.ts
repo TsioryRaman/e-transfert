@@ -5,7 +5,6 @@ import { configuration } from 'src/config/configurations';
 @Module({
     imports:[ConfigModule.forRoot({
         envFilePath: [`.env.${process.env.NODE_ENV}.local`,`.env.${process.env.NODE_ENV}`,'.env'],
-        load: [configuration]
       })],
     providers: [UserNotification],
     exports: [UserNotification]
