@@ -6,26 +6,26 @@ import {
     OnGatewayInit,
     OnGatewayDisconnect
 } from "@nestjs/websockets";
-import {Server} from "socket.io";
+import { Server } from "socket.io";
 
 
 
-@WebSocketGateway(8888,{
+@WebSocketGateway(8888, {
     cors: {
-        origin:"http://localhost:5173"
+        origin: "*"
     }
 })
-export class UserNotification implements OnGatewayInit,OnGatewayDisconnect{
+export class UserNotification implements OnGatewayInit, OnGatewayDisconnect {
 
     @WebSocketServer()
-    server:Server;
+    server: Server;
 
     handleDisconnect(client: any) {
-        console.log("disconected server",client.id);
+        console.log("disconected server", client.id);
     }
 
     afterInit() {
-        this.server.on('connection',(socket)=> {
+        this.server.on('connection', (socket) => {
             console.log(socket.id);
             console.log("connected")
         })
@@ -33,8 +33,8 @@ export class UserNotification implements OnGatewayInit,OnGatewayDisconnect{
 
     @SubscribeMessage('events')
     handleEvent(@MessageBody() data: string): string {
-        this.server.emit('message',{
-            data:data,
+        this.server.emit('message', {
+            data: data,
         });
         return data + " lelika";
     }
