@@ -13,6 +13,7 @@ export const configuration = () => ({
     DB_PASSWORD:process.env.DB_PASSWORD,
     DB_NAME:process.env.DB_NAME,
     JWT_SECRET:process.env.JWT_SECRET,
-    JWT_ECPIRE_TIME:process.env.JWT_EXPIRE_TIME
+    JWT_ECPIRE_TIME:process.env.JWT_EXPIRE_TIME,
+    FRONT_ENDPOINT:process.env.FRONT_ENDPOINT
   });
   

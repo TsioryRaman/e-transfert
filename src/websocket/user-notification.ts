@@ -8,9 +8,11 @@ import {
 } from "@nestjs/websockets";
 import {Server} from "socket.io";
 
+
+
 @WebSocketGateway(8888,{
     cors: {
-        origin:process.env.FRONT_ENDPOINT
+        origin:"http://localhost:5173"
     }
 })
 export class UserNotification implements OnGatewayInit,OnGatewayDisconnect{
@@ -36,6 +38,5 @@ export class UserNotification implements OnGatewayInit,OnGatewayDisconnect{
         });
         return data + " lelika";
     }
-
 
 }
