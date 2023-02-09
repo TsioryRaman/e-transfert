@@ -1,11 +1,11 @@
 import { IsEmail, MaxLength, MinLength } from "class-validator";
 
 export class CreateUserDto {
-    id:number;
+    id: number;
 
-    username:string;
+    username: string;
 
-    email:string;
-    
-    password:string;
+    email: string;
+
+    password: string;
 }
