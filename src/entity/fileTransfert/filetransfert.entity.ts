@@ -10,9 +10,11 @@ export class Filetransfert extends DateInfo {
     id: number;
 
     @ManyToOne(() => User, (user) => user.sendFileTransfert,{nullable:false})
+    @JoinColumn()
     sendBy: User;
 
     @ManyToOne(() => User, (user) => user.receiveFileTransfert,{nullable:false})
+    @JoinColumn()
     sendTo: User;
 
     @OneToMany(() => File, (file) => file.filetransfert,{nullable:false})
