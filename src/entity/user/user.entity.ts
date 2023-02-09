@@ -1,33 +1,37 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { IsEmail, MaxLength, MinLength } from "class-validator"
 import { DateInfo } from "../DateInfo.entity";
+import { Filetransfert } from "../fileTransfert/filetransfert.entity";
 @Entity("user")
-export class User extends DateInfo{
+export class User extends DateInfo {
     @PrimaryGeneratedColumn()
-    id:number;
+    id: number;
 
     @Column({
-        length:255,
-        nullable:false,
+        length: 255,
+        nullable: false,
         comment: "Nom d'utilisateur",
-        unique:true
+        unique: true
     })
     @MinLength(4)
     @MaxLength(255)
-    username:string;
+    username: string;
 
     @Column({
-        length:255,
-        nullable:false,
+        length: 255,
+        nullable: false,
         comment: "Mot de passe",
-        unique:false
+        unique: false
     })
     @MinLength(6)
     @MaxLength(255)
-    password:string;
+    password: string;
 
-    @Column({unique:true})
+    @Column({ unique: true })
     @IsEmail()
     @MaxLength(255)
-    email:string;
+    email: string;
+
+    @OneToMany(() => Filetransfert, (filetransfert) => filetransfert.sendBy)
+    filetransfert: Filetransfert[];
 }

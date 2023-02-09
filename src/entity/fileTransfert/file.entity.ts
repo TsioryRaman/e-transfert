@@ -1,13 +1,19 @@
-import { Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { IsOptional } from "class-validator";
+import { Column, Entity, IsNull, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { DateInfo } from "../DateInfo.entity";
 import { Filetransfert } from "./filetransfert.entity";
 
+@Entity()
 export class File extends DateInfo {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    filename: string;
+    @Column({
+        nullable: true,
+        default: null
+    })
+
+    fileName?: string;
     @Column()
     size: number;
     @Column()
@@ -16,6 +22,7 @@ export class File extends DateInfo {
     destination: string;
     @Column()
     filetype: string;
-    @ManyToOne(() => Filetransfert, (file) => file.id)
-    file: Filetransfert
+    @ManyToOne(() => Filetransfert, (filetransfert) => filetransfert.file)
+    @JoinColumn()
+    filetransfert: Filetransfert;
 }

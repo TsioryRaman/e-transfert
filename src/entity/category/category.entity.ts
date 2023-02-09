@@ -3,17 +3,17 @@ import { Article } from "../article/article.entity";
 import { DateInfo } from "../DateInfo.entity";
 
 @Entity("category")
-export class Category extends DateInfo{
+export class Category extends DateInfo {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({
-        length:255
+        length: 255
     })
     name: string;
-    
-    @OneToMany(()=>Article,(article)=>article.category)
-    article:Article;
+
+    @OneToMany(() => Article, (article) => article.category)
+    article: Article;
 
 
 }

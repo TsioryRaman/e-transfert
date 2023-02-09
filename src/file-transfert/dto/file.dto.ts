@@ -1,8 +1,10 @@
+import { IsOptional } from "class-validator";
 import { CreateUserDto } from "src/entity/user/dto/create-user.dto";
 import { CreateContextOptions } from "vm";
 
 export class CreateFileDto {
-    filename: string;
+    @IsOptional()
+    fileName?: string;
     size: number;
     originalName: string;
     destination: string;

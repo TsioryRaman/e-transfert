@@ -17,7 +17,7 @@ export class FiletransferController {
         @UploadedFile() file: Express.Multer.File
     ) {
         console.log(body)
-        return this.fileTransfertService.SendFile(1, body.idReceiver, file)
+        return this.fileTransfertService.SendFile(2, body.idReceiver, file)
 
     }
 
