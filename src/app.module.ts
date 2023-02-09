@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
 import { entities } from './entity/entity';
@@ -22,7 +22,7 @@ import { FiletransfertModule } from './filetransfert/filetransfert.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DATABASE_HOST,
-      port: parseInt(process.env.DATABASE_PORT,10),
+      port: parseInt(process.env.DATABASE_PORT, 10),
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
@@ -39,4 +39,4 @@ import { FiletransfertModule } from './filetransfert/filetransfert.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
