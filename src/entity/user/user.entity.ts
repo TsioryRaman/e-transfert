@@ -32,9 +32,9 @@ export class User extends DateInfo {
     @MaxLength(255)
     email: string;
 
-    @OneToMany(() => Filetransfert, (filetransfert) => filetransfert.sendBy,{nullable:true})
+    @OneToMany(() => Filetransfert, (filetransfert) => filetransfert.sendBy,{nullable:true,onDelete:"CASCADE",onUpdate:"CASCADE"})
     sendFileTransfert: Filetransfert[];
 
-    @OneToMany(() => Filetransfert, (filetransfert) => filetransfert.sendTo,{nullable:true})
+    @OneToMany(() => Filetransfert, (filetransfert) => filetransfert.sendTo,{nullable:true,onDelete:"CASCADE",onUpdate:"CASCADE"})
     receiveFileTransfert: Filetransfert[];
 }
