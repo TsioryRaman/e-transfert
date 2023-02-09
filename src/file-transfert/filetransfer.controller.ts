@@ -1,5 +1,5 @@
-import { Controller, Body, ParseIntPipe, Post, Req, Request, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { Controller, Body, ParseIntPipe, Post, Req, Request, UploadedFile, UseGuards, UseInterceptors, UploadedFiles } from '@nestjs/common';
+import { AnyFilesInterceptor, FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { FileTransfertService } from './service/file-transfert.service';
 
@@ -8,16 +8,15 @@ export class FiletransferController {
     constructor(private fileTransfertService: FileTransfertService) {
     }
 
-    @UseInterceptors(FileInterceptor('file'))
-    // @UseGuards(JwtAuthGuard)
+    @UseInterceptors(AnyFilesInterceptor())
     @Post()
     SendFile(
         @Body() body,
         @Request() req,
-        @UploadedFile() file: Express.Multer.File
+        @UploadedFiles() files: Array<Express.Multer.File>
     ) {
-        console.log(body)
-        return this.fileTransfertService.SendFile(2, body.idReceiver, file)
+        console.log(files);
+        return this.fileTransfertService.SendFile(1, body.idReceiver, files)
 
     }
 
