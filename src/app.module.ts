@@ -11,7 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { configuration } from './config/configurations';
 import { WebsocketModule } from './websocket/websocket.module';
-import { FiletransfertModule } from './filetransfert/filetransfert.module';
+import { FileTransfertModule } from './file-transfert/file-transfert.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -34,7 +34,7 @@ import { FiletransfertModule } from './filetransfert/filetransfert.module';
     AuthModule,
     UserModule,
     WebsocketModule,
-    FiletransfertModule
+    FileTransfertModule
   ],
   controllers: [AppController],
   providers: [AppService],

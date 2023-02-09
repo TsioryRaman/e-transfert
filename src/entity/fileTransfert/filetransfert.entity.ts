@@ -9,12 +9,12 @@ export class Filetransfert extends DateInfo {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => User, (user) => user.filetransfert)
+    @ManyToOne(() => User, (user) => user.sendFileTransfert,{nullable:false})
     sendBy: User;
 
-    @OneToMany(() => User, (user) => user.id)
+    @ManyToOne(() => User, (user) => user.receiveFileTransfert,{nullable:false})
     sendTo: User;
 
-    @OneToMany(() => File, (file) => file.filetransfert)
+    @OneToMany(() => File, (file) => file.filetransfert,{nullable:false})
     file: File[];
 }
