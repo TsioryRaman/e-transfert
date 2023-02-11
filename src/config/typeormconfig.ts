@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { entities } from "src/entity/entity";
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
     type: 'mysql',
@@ -6,7 +7,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     port: parseInt(process.env.DATABASE_PORT,10),
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DATABASE_NAME,
-    entities: [],
+    database: process.env.DB_NAME,
+    entities,
     synchronize: true
   }

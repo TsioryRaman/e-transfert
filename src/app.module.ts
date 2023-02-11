@@ -12,6 +12,7 @@ import { UserModule } from './user/user.module';
 import { configuration } from './config/configurations';
 import { WebsocketModule } from './websocket/websocket.module';
 import { FileTransfertModule } from './file-transfert/file-transfert.module';
+import { typeOrmConfig } from './config/typeormconfig';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -19,16 +20,7 @@ import { FileTransfertModule } from './file-transfert/file-transfert.module';
       isGlobal:true,
       load: [configuration]
     }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DATABASE_HOST,
-      port: parseInt(process.env.DATABASE_PORT, 10),
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      entities,
-      synchronize: true
-    }),
+    TypeOrmModule.forRoot(typeOrmConfig),
     CategoryModule,
     ArticleModule,
     AuthModule,
