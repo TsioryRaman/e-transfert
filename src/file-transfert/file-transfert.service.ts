@@ -4,8 +4,8 @@ import { File } from 'src/entity/fileTransfert/file.entity';
 import { Filetransfert } from 'src/entity/fileTransfert/filetransfert.entity';
 import { User } from 'src/entity/user/user.entity';
 import { Repository } from 'typeorm';
-import { CreateFileDto } from '../../entity/fileTransfert/dto/file.dto';
-import { CreateFileTransfertDto } from '../../entity/fileTransfert/dto/create-fileTransfert.dto';
+import { CreateFileDto } from '../entity/fileTransfert/dto/file.dto';
+import { CreateFileTransfertDto } from '../entity/fileTransfert/dto/create-fileTransfert.dto';
 @Injectable()
 export class FileTransfertService {
 
@@ -20,7 +20,6 @@ export class FileTransfertService {
         const reicever = await this.userRepository.findOneBy({ id: +reiceverId });
         var fileEntities:File[] = [];
         if (reicever) {
-
             try {
                 files.forEach(async (file) => {
                     let fileDto = this.createFile(file);
@@ -28,7 +27,7 @@ export class FileTransfertService {
                 })
 
                 const transfertFile = this.createTransfertFile(sender, reicever, fileEntities)
-                await this.fileTransfertRepository.save(transfertFile)
+                return this.fileTransfertRepository.save(transfertFile)
             } catch (e) {
                 console.error(e)
             }
