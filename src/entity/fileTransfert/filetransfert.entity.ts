@@ -17,6 +17,6 @@ export class Filetransfert extends DateInfo {
     @JoinColumn()
     sendTo: User;
 
-    @OneToMany(() => File, (file) => file.filetransfert,{nullable:false})
+    @OneToMany(() => File, (file) => file.filetransfert,{nullable:false,cascade:true})
     file: File[];
 }

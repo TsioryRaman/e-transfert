@@ -14,6 +14,7 @@ export const configuration = () => ({
     DB_NAME:process.env.DB_NAME,
     JWT_SECRET:process.env.JWT_SECRET,
     JWT_ECPIRE_TIME:process.env.JWT_EXPIRE_TIME,
-    FRONT_ENDPOINT:process.env.FRONT_ENDPOINT
+    FRONT_ENDPOINT:process.env.FRONT_ENDPOINT,
+    CORS_HOSTS: process.env.CORS_HOSTS
   });
   

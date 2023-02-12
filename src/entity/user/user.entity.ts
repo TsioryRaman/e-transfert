@@ -21,7 +21,8 @@ export class User extends DateInfo {
         length: 255,
         nullable: false,
         comment: "Mot de passe",
-        unique: false
+        unique: false,
+        select:false
     })
     @MinLength(6)
     @MaxLength(255)

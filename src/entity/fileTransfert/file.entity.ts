@@ -23,6 +23,5 @@ export class File extends DateInfo {
     @Column()
     filetype: string;
     @ManyToOne(() => Filetransfert, (filetransfert) => filetransfert.file)
-    @JoinColumn()
     filetransfert: Filetransfert;
 }

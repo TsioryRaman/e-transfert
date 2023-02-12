@@ -22,11 +22,9 @@ export class FileTransfertService {
         if (reicever) {
 
             try {
-                files.forEach(async (file,index) => {
+                files.forEach(async (file) => {
                     let fileDto = this.createFile(file);
-                    let fileEntity = await this.fileRepository.save(fileDto);
-                    fileEntities.push(fileEntity);
-                    console.log(index)
+                    fileEntities.push(fileDto);
                 })
 
                 const transfertFile = this.createTransfertFile(sender, reicever, fileEntities)

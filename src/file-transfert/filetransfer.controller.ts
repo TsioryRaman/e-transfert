@@ -15,9 +15,7 @@ export class FiletransferController {
         @Request() req,
         @UploadedFiles() files: Array<Express.Multer.File>
     ) {
-        console.log(files);
-        return this.fileTransfertService.SendFile(1, body.idReceiver, files)
-
+        return this.fileTransfertService.SendFile(1, body.idReceiver, files);
     }
 
 }
