@@ -49,7 +49,11 @@ export class UserService {
     }
 
     async findOne(username:string){
-      return this.userRepository.findOneBy({username});
+      return this.userRepository.findOne(
+        {
+          select:["id","username","password"],
+          where:{username:username}
+    });
     }
 
     async findUser(id:number){
