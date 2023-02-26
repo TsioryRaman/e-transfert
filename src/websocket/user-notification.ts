@@ -28,14 +28,18 @@ export class UserNotification implements OnGatewayInit,OnGatewayDisconnect{
         this.server.on('connection',(socket)=> {
             console.log(socket.id);
             console.log("connected")
+            socket.broadcast.emit('connected',{
+                id:socket.id,
+            });
         })
     }
 
     @SubscribeMessage('events')
-    handleEvent(@MessageBody() data: string): string {
-        this.server.emit('message',{
-            data:data,
-        });
+    handleEvent(@MessageBody() data: any): string {
+        console.log(data)
+        let value = JSON.parse(data);
+
+        this.server.to(value.id+"").emit("test", "coucou")
         return data + " lelika";
     }
 

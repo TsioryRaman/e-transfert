@@ -33,6 +33,9 @@ export class User extends DateInfo {
     @MaxLength(255)
     email: string;
 
+    @Column({nullable:true})
+    refresh_token?:string;
+
     @OneToMany(() => Filetransfert, (filetransfert) => filetransfert.sendBy,{nullable:true,onDelete:"CASCADE",onUpdate:"CASCADE"})
     sendFileTransfert: Filetransfert[];
 

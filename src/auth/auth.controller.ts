@@ -1,21 +1,49 @@
-import { Controller, Get, HttpException, HttpStatus, Request, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import { CreateUserDto } from 'src/entity/user/dto/create-user.dto';
+import { User } from 'src/entity/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { JwtAuthGuard } from './common/jwt-auth.guard';
+import { LocalAuthGuard } from './common/local-auth-guard';
+import { RefreshTokenGuard } from './common/refreshToken.guards';
 
 @Controller('auth')
 export class AuthController {
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+  ) {}
 
-    constructor(private authService:AuthService, private userService:UserService){}
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Request() req) {
+    return this.authService.login(req.user);
+  }
 
-    @UseGuards(JwtAuthGuard)
-    @Get('refresh-token')
-    async refreshToken(@Request() req){
-        try{
-            return this.authService.login(await this.userService.findOne(req.username));
-        }catch(error){
-            throw new HttpException("Erreur innatendu",HttpStatus.NOT_FOUND);
-        }
-    }
+  @Post()
+  signUp(@Body() createUserDto: CreateUserDto) {
+    return this.authService.signup(createUserDto);
+  }
+
+  @UseGuards(RefreshTokenGuard)
+  @Get('/refresh')
+  refreshTokens(@Request() req) {
+    const userId = req.user['sub'];
+    const refreshToken = req.user['refreshToken'];
+    return this.authService.refreshTokens(userId, refreshToken);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('logout')
+  logout(@Request() req) {
+    this.authService.logout(req.user['sub']);
+  }
 
 }
