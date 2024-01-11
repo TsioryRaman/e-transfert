@@ -9,21 +9,18 @@ import { LocalStrategy } from './guard-strategy/local.strategy';
 import { AuthController } from './auth.controller';
 import { ConfigModule } from '@nestjs/config';
 import { RefreshTokenStrategy } from './refresh-token-strategy';
+import { UserService } from 'src/user/user.service';
 import { User } from 'src/entity/user/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports:[
-    TypeOrmModule.forFeature([User]),
-    ConfigModule.forRoot({
-      envFilePath: [`.env.${process.env.NODE_ENV}.local`,`.env.${process.env.NODE_ENV}`,'.env'],
-    }),
     UserModule,
-    PassportModule,
     JwtModule.register({
-      secret:process.env.JWT_SECRET,
-      signOptions: {expiresIn: `${process.env.JWT_EXPIRE_TIME} min`}
-    }),
+      global:true,
+      secret:"fksdmfmdlksngd65g64f651gd351g321d32f1g3d21fg3g1f31g32d",
+      signOptions: {expiresIn: `5000 min`}
+    })
   ],
   providers: [AuthService,LocalStrategy,JwtStrategy,EncodePassword,RefreshTokenStrategy],
   exports:[AuthService],

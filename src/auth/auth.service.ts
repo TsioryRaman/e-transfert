@@ -102,6 +102,7 @@ export class AuthService {
       }
       throw new HttpException(error, HttpStatus.NOT_ACCEPTABLE);
     } catch (error) {
+      console.error("NOT ALLOWED")
       throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
   }

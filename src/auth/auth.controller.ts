@@ -27,8 +27,10 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
-  @Post()
+  @Post("")
   signUp(@Body() createUserDto: CreateUserDto) {
+    console.log("Ici")
+    console.log(createUserDto)
     return this.authService.signup(createUserDto);
   }
 

@@ -7,7 +7,7 @@ import { EncodePassword } from './utils/bcrypt-encode';
 
 @Module({
   providers: [UserService,EncodePassword,EncodePassword],
-  exports: [UserService],
+  exports: [UserService,TypeOrmModule],
   controllers: [UserController],
   imports:[TypeOrmModule.forFeature([User])]
 })
